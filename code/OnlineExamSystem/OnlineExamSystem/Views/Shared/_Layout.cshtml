@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/assets/vendors/css/vendor.bundle.base.css">
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/assets/images/favicon.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo" href='@Url.Action("Dashboard","Superadmin")'>
+                    <img src="~/assets/images/mahaexam-logo.png" alt="mahaexam logo" />
+                </a>
+                <a class="navbar-brand brand-logo-mini" href='@Url.Action("Dashboard","Superadmin")'>
+                    <img src="~/assets/images/mahaexam-logo.png" alt="mahaexam logo" />
+                </a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">@Request.Cookies["FirstName"].Value @Request.Cookies["LastName"].Value</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="mdi mdi-cached mr-2 text-success"></i>Update Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href='@Url.Action("Logout","Base")'>
+                                <i class="mdi mdi-logout mr-2 text-success"></i>Signout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="#" class="nav-link">
+                            @*<div class="nav-profile-image">
+                                    <img src="~/assets/images/faces/face1.jpg" alt="profile">
+                                    <span class="login-status online"></span>
+                                </div>
+                            *@
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">@Request.Cookies["FirstName"].Value @Request.Cookies["LastName"].Value</span>
+                                <span class="text-secondary text-small"></span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+                    @if (Request.Cookies["UserTypeId"].Value == "1")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href='@Url.Action("Dashboard", "Superadmin")'>
+                                <i class="mdi mdi-home menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-admin" aria-expanded="false" aria-controls="ui-admin">
+                                <i class="mdi mdi-contacts menu-icon"></i>
+                                <span class="menu-title">User</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-admin">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"><a class="nav-link" href='@Url.Action("UserList", "User")'>Create User</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-student" aria-expanded="false" aria-controls="ui-student">
+                                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                                <span class="menu-title">Student</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-student">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"><a class="nav-link" href='@Url.Action("Students","Student")'>Student Registration</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-exam" aria-expanded="false" aria-controls="ui-exam">
+                                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                                <span class="menu-title">Exams</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-exam">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"><a class="nav-link" href="@Url.Action("AnswerType", "Exam")">Add Answer Type</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Questions", "Exam")">Assign Exam Question</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Answers", "Exam")">Assign Exam Question Answer</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#ui-course" aria-expanded="false" aria-controls="ui-admin">
+                                <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                                <span class="menu-title">Courses</span>
+                                <i class="menu-arrow"></i>
+                            </a>
+                            <div class="collapse" id="ui-course">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"><a class="nav-link" href='@Url.Action("Course", "Fees")'>Courses</a></li>
+                                    <li class="nav-item"><a class="nav-link" href='@Url.Action("Fees", "Fees")'>Fees</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href='@Url.Action("StudentDashboard", "Superadmin")'>
+                                <i class="mdi mdi-home menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("PersonalNotes","SuperAdmin")">
+                            <i class="mdi mdi-table-large menu-icon"></i>
+                            <span class="menu-title">Personal Notes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("NoticeBoard","SuperAdmin")">
+                            <i class="mdi mdi-table-large menu-icon"></i>
+                            <span class="menu-title">Notice Board</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script>
+                            All rights reserved
+                        </span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Developed By : <a target="_black" href="http://calenturesolutions.com/">Calenture Solutions</a></span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/assets/vendors/chart.js/Chart.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/assets/js/off-canvas.js"></script>
+    <script src="~/assets/js/hoverable-collapse.js"></script>
+    <script src="~/assets/js/misc.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    <!-- endinject -->
+
+    @RenderSection("scripts", required: false)
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- End custom js for this page -->
+    <script type="text/javascript">
+        // $(document).ready(function(){
+        //   $( ".nav-link" ).on( "click", function() {
+        //     $('.collapse.show').addClass('active-show').parent();
+        //     });
+
+        // });
+
+        $(document).ready(function () {
+            $('#admin').DataTable();
+
+            $('#student').DataTable();
+        });
+    </script>
+
+</body>
+</html>
+
+

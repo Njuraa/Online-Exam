@@ -1,0 +1,135 @@
+﻿@model IEnumerable<DataModel.FeesMaster>
+<div class="page-header">
+    <h3 class="page-title">
+        Add Fees
+    </h3>
+    <a href="#" class="btn btn-primary myformbtn" onclick="openFeesForm()"><i class="glyphicon glyphicon-plus"></i> Add Fees</a>
+</div>
+<div id="divFormDetails">
+
+</div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+<!-- start detail -->
+<div class="mt-5 table-responsive">
+    <table id="admin" class="table table-striped table-bordered box-shadow" style="width:100%">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th> Fees Id </th>
+                <th> Course </th>
+                <th> Amount </th>
+                <th> Offers </th>
+                <th> SGST </th>
+                <th> CGST </th>
+                <th>&nbsp; </th>
+                <th>&nbsp; </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.ToList().Count() > 0)
+            {
+                foreach (var item in Model.ToList())
+                {
+            <tr>
+                <td>@item.FeesId</td>
+                <td class="py-1">@item.CourseName</td>
+                <td> @item.Amount</td>
+                <td> @item.Offer </td>
+                <td> @item.SGST </td>
+                <td> @item.CGST </td>
+                <td>
+                    <a href="#" onclick="openFeesForm(@item.FeesId)" class="btn btn-sm myformbtn btn-primary">
+                        <i class="text-white mdi mdi-circle-edit-outline menu-icon "></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" type="button" onclick="deleteFees(@item.FeesId)" class="btn btn-sm  btn-danger">
+                        <i class="text-white mdi mdi-delete-circle-outline menu-icon"></i>
+                    </a>
+                </td>
+            </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+@section scripts{
+    <script>
+        function openFeesForm(feesId) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            data: { id: feesId },
+            url: '@Url.Action("AddFees")',
+            success: function (data) {
+                $('#divFormDetails').html(data);
+            },
+            error: function (err) {
+                alert(err);
+            }
+        });
+    }
+
+    function CloseForm() {
+        $(".myform").hide('3000');
+        }
+        function deleteFees(feesId) {
+            //var user =  { UserId: userId };
+            if (confirm("Are you sure to remove this fees record??")) {
+                $.ajax({
+                    type: 'POST',
+                    contentType : 'application/json;charset=UTF-',
+                    dataType: 'json',
+                    url: '/Fees/Delete/' + feesId,
+                    success: function (data) {
+                        alert("Yo have removed one fees record successfully!!!");
+                        window.location.href = '@Url.Action("Fees")';
+                    },
+                    error: function (err) {
+                        alert(err.responseText);
+                    }
+                });
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <script>
+        //Valdidation using jquery
+        function validate() {
+            debugger;
+            var isValid = true;
+            if ($('#CourseId').val().trim() == "") {
+                $('#CourseId').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#CourseId').css('border-color', 'lightgrey');
+            }
+            if ($('#Description').val().trim() == "") {
+                $('#Description').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#Description').css('border-color', 'lightgrey');
+            }
+            if ($('#Amount').val().trim() == "" || $('#Amount').val().trim() == "0") {
+                $('#Amount').css('border-color', 'Red');
+                isValid = false;
+            } else {
+                $('#Amount').css('border-color', 'lightgrey');
+            }
+            if (!isValid) {
+                event.preventDefault();
+            }
+            return isValid;
+        }
+    </script>
+}

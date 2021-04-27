@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DataModel.QuestionMaster>
+@{
+    ViewBag.Title = "StartExam";
+}
+<div class="page-header">
+    <h3 class="page-title">
+        Start Exam
+    </h3>
+    @*<a href="#" class="btn btn-primary myformbtn" onclick="openStudentForm()"><i class="glyphicon glyphicon-plus"></i> Add Student</a>*@
+</div>
+<!-- start View Paper -->
+@using (Html.BeginForm("StartExam", "Student"))
+{
+    if (Model != null && Model.ToList().Count() > 0)
+    {
+        int serialNo = 0;
+        <div class="tab-pane text-left" id="demo3" role="tabpanel">
+            <h4>@Model.ToList()[0].CourseName</h4>
+            <!-- question start -->
+
+            @foreach (var item in Model.ToList())
+            {
+                int ansCount = 0;
+                <div class="view-paper">
+                    <span class="close"><a href="#">X</a> </span>
+                    <h5>
+                        <span>@(serialNo + 1)) </span>@item.Question
+                        <input type="hidden" name="QuestionMaster[@serialNo].QuestionId" value="@item.QuestionId" />
+                        <input type="hidden" name="QuestionMaster[@serialNo].CourseId" value="@item.CourseId" />
+                        <input type="hidden" name="QuestionMaster[@serialNo].Question" value="@item.Question" />
+                        <input type="hidden" name="QuestionMaster[@serialNo].StudentId" value="@item.StudentId" />
+                        <input type="hidden" name="QuestionMaster[@serialNo].LoggedInUser" value="@Request.Cookies["UserId"].Value" />
+                        <input type="hidden" name="QuestionMaster[@serialNo].StudentExamId" value="@item.StudentExamId" />
+                    </h5>
+                    <ul class="row">
+                        @foreach (var ansItem in item.Options.ToList())
+                        {
+                            <li class="col-md-6">
+                                <div class="form-group">
+                                    <span class="number">(@(ansCount+1))</span>
+                                    <span class="form-check">
+                                        <label class="form-check-label text-left">
+                                            <input type="radio" class="form-check-input" name="QuestionMaster[@serialNo].AnswerId" id="Radio_@ansItem.AnswerId"
+                                                   value="@ansItem.AnswerId" required>
+                                            @ansItem.Answer <i class="input-helper"></i>
+                                        </label>
+                                    </span>
+
+                                </div>
+                            </li>
+                            ansCount++;
+                        }
+                    </ul>
+                </div>
+                <hr />
+                serialNo++;
+            }
+            <div class="form-group text-center m-0">
+                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+            </div>
+        </div>
+    } <!-- end View Paper -->
+}

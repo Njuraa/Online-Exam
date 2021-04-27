@@ -1,0 +1,91 @@
+﻿
+@model IEnumerable<DataModel.StudentsExams>
+
+@{
+    ViewBag.Title = "AddStudentExam";
+}
+<!-- start Student Details -->
+<div class="row studentdetails">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card box-shadow">
+            @if (Model != null && Model.ToList().Count() > 0)
+            {
+                <div class="card-body text-center">
+                    <h4 class="card-title">@Model.ToList()[0].StudentName</h4>
+
+                    <div class="mt-1 table-responsive">
+                        <table id="student" class="table table-striped table-bordered box-shadow" style="width: 100%">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Exam Date </th>
+                                    <th>Exam Time </th>
+                                    <th>Fees </th>
+                                    <th>Appeared </th>
+                                    <th>Result </th>
+                                    <th class="text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ToList())
+                                {
+                                    int percentage = 0;
+                                    percentage = item.Total != 0 ? item.Marks * 100 / item.Total : 0;
+                                    <tr>
+                                        <td>@item.CourseName </td>
+                                        <td>@item.ExamDate</td>
+                                        <td>@item.ExamTime </td>
+                                        <td>@item.Fees </td>
+                                        <td>
+                                            @if (item.IsAppeared == false)
+                                            {
+                                                <span class="text-danger">Not Appeared</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-success">Appeared</span>
+                                            }
+                                        </td>
+
+                                        <td>
+                                            @if (item.IsExpired == false || item.IsAppeared == false)
+                                            {
+                                                <span>--</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@percentage</span>
+                                            }
+                                        </td>
+
+                                        <td class="text-center">
+                                            @if (item.IsExpired == false && item.IsAppeared == false)
+                                            {
+                                                <a href="@Url.Action("StartExam", "Student", new { id = item.StudentExamId })" type="button" class="btn btn-sm btn-success editstudentbtn" title="Edit">
+                                                    <i class="text-white mdi mdi-circle-edit-outline menu-icon "></i>Start
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                if (item.IsAppeared == false)
+                                                { <span class="text-danger">--</span> }
+                                                else
+                                                {
+                                                    if (percentage >= 33)
+                                                    {<span class="text-success">Pass</span> }
+                                                    else
+                                                    {<span class="text-danger">Failed</span>}
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- end detail -->

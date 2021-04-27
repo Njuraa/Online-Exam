@@ -1,0 +1,48 @@
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\bin\Debug\DAL.dll
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\bin\Debug\DAL.pdb
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\obj\Debug\DAL.dll
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\obj\Debug\DAL.pdb
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\bin\Debug\DataModel.dll
+D:\Suraj\Online Exam Management\OnlineExamSystem\DAL\bin\Debug\DataModel.pdb
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\DAL.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\DAL.pdb
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\DataModel.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\DataModel.pdb
+F:\Projects\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+F:\Projects\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csproj.CopyComplete
+F:\Projects\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.pdb
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Mvc.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Razor.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Razor.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Deployment.dll
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Mvc.xml
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Razor.xml
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Razor.xml
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.xml
+F:\Projects\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Deployment.xml
+F:\Projects\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\DAL.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\DAL.pdb
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\DataModel.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Mvc.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Razor.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Razor.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Deployment.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\DataModel.pdb
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.pdb
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\DataModel.dll.config
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\obj\Debug\DAL.csproj.CopyComplete
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Mvc.xml
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.Razor.xml
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Razor.xml
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.xml
+F:\AngularProject\StudentExam\OnlineExamSystem\DAL\bin\Debug\System.Web.WebPages.Deployment.xml

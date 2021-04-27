@@ -1,0 +1,95 @@
+﻿@model IEnumerable<DataModel.User>
+<div class="page-header">
+    <h3 class="page-title">
+        Create Student
+    </h3>
+    <a href="#" class="btn btn-primary myformbtn" onclick="openStudentForm()"><i class="glyphicon glyphicon-plus"></i> Add Student</a>
+</div>
+<div id="divFormDetails">
+
+</div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+<!-- start detail -->
+<div class="mt-5 table-responsive">
+    <table id="admin" class="table table-striped table-bordered box-shadow" style="width:100%">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th> Sr. No. </th>
+                <th> User Type </th>
+                <th> Full Name </th>
+                <th> Email </th>
+                <th> Password </th>
+                <th> Mobile No. </th>
+                <th>&nbsp; </th>
+                <th>&nbsp; </th>
+                <th>&nbsp; </th>
+                <th>&nbsp; </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.ToList().Count() > 0)
+            {
+                int count = 1;
+                foreach (var item in Model.ToList())
+                {
+            <tr>
+                <td>@count</td>
+                <td class="py-1">@item.UserType</td>
+                <td> @item.FirstName &nbsp; @item.LastName </td>
+                <td> @item.EmailId</td>
+                <td> @item.UserPassword </td>
+                <td> @item.MobileNo </td>
+                <td class="text-center">
+                    <a href="#" onclick="viewStudentExam(@item.UserId)" type="button" class="btn btn-sm btn-success viewcoursesbtn" title="view">
+                        <i class="text-white mdi mdi-eye menu-icon "></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a href="#" onclick="addStudentExam(@item.UserId)" type="button" class="btn btn-sm btn-primary addcoursesbtn" title="Add">
+                        <i class="text-white mdi mdi-plus-circle-outline menu-icon"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" onclick="openStudentForm(@item.UserId)" class="btn btn-sm myformbtn btn-primary">
+                        <i class="text-white mdi mdi-circle-edit-outline menu-icon "></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" type="button" onclick="deleteStudent(@item.UserId)" class="btn btn-sm  btn-danger">
+                        <i class="text-white mdi mdi-delete-circle-outline menu-icon"></i>
+                    </a>
+                </td>
+
+            </tr>
+                    count++;
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+@section scripts{
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script>
+    $(document).ready(function () {
+        datepicker();
+        function datepicker() {
+            $('#datepicker').datepicker({
+                weekStart: 1,
+                daysOfWeekHighlighted: "6,0",
+                autoclose: true,
+                todayHighlight: true,
+            });
+            $('#datepicker').datepicker("setDate", new Date());
+        };
+    });
+    </script>
+    <script src="~/Scripts/js/Student.js"></script>
+}

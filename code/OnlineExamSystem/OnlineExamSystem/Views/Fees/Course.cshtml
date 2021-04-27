@@ -1,0 +1,125 @@
+﻿@model IEnumerable<DataModel.CourseMaster>
+<div class="page-header">
+    <h3 class="page-title">
+        Create User
+    </h3>
+    <a href="#" class="btn btn-primary myformbtn" onclick="openCourseForm()"><i class="glyphicon glyphicon-plus"></i> Add New Course</a>
+</div>
+<div id="divFormDetails">
+
+</div>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+else if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+<!-- start detail -->
+<div class="mt-5 table-responsive">
+    <table id="admin" class="table table-striped table-bordered box-shadow" style="width:100%">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th> Course Id </th>
+                <th> Course </th>
+                <th> Eligibility </th>
+                <th> Description </th>
+                <th>&nbsp; </th>
+                <th>&nbsp; </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.ToList().Count() > 0)
+            {
+                foreach (var item in Model.ToList())
+                {
+                    <tr>
+                        <td>@item.CourseId</td>
+                        <td class="py-1">@item.CourseName</td>
+                        <td> @item.Eligibility</td>
+                        <td> @item.Description </td>
+                        <td>
+                            <a href="#" onclick="openCourseForm(@item.CourseId)" class="btn btn-sm myformbtn btn-primary">
+                                <i class="text-white mdi mdi-circle-edit-outline menu-icon "></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" type="button" onclick="deleteCourse(@item.CourseId)" class="btn btn-sm  btn-danger">
+                                <i class="text-white mdi mdi-delete-circle-outline menu-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>
+@section scripts{
+    <script>
+        function openCourseForm(CourseId) {
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            data: { id: CourseId },
+            url: '@Url.Action("AddCourse")',
+            success: function (data) {
+                $('#divFormDetails').html(data);
+            },
+            error: function (err) {
+                alert(err);
+            }
+        });
+    }
+
+    function CloseForm() {
+        $(".myform").hide('3000');
+        }
+        function deleteCourse(CourseId) {
+            //var user =  { UserId: userId };
+            if (confirm("Are you sure to remove this course??")) {
+                $.ajax({
+                    type: 'POST',
+                    contentType : 'application/json;charset=UTF-',
+                    dataType: 'json',
+                    url: '/Fees/DeleteCourse/' + CourseId,
+                    success: function (data) {
+                        alert("Yo have removed one record successfully!!!");
+                        window.location.href = '@Url.Action("Course","Fees")';
+                    },
+                    error: function (err) {
+                        alert(err.responseText);
+                    }
+                });
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <script>
+        //Valdidation using jquery
+        function validate() {
+            debugger;
+            var isValid = true;
+            if ($('#CourseName').val().trim() == "") {
+                $('#CourseName').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#CourseName').css('border-color', 'lightgrey');
+            }
+            if ($('#Description').val().trim() == "") {
+                $('#Description').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#Description').css('border-color', 'lightgrey');
+            }
+            if (!isValid) {
+                event.preventDefault();
+            }
+            return isValid;
+        }
+    </script>
+}
