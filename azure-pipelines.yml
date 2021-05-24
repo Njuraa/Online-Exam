@@ -15,11 +15,16 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
+    command: 'restore'
     restoreSolution: '$(solution)'
+    feedsToUse: 'select'
+    vstsFeed: 'cd1b1eea-67f5-4b8e-a711-2727660e7c5a/a2187f70-4ab5-44c1-aec3-2bb2739b193d'
 
 - task: VSBuild@1
   inputs:
@@ -39,3 +44,4 @@ steps:
     PathtoPublish: $(Build.artifactstagingdirectory)
     ArtifactName: Online-Exam
     publishLocation: 'Container'    
+
