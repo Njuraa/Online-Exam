@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'azure pipeline'
+pool: 'azure pipeline'
 
 variables:
   solution: '**/*.sln'
